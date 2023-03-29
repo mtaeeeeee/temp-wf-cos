@@ -3,16 +3,6 @@ $(document).ready(function(){
     //Cosplayer list
     let cosplayerList = [];
 
-    function searchVote(cosplayerID){
-        for (cosplayer of cosplayerState) {
-            
-            if(cosplayerID == cosplayer.id){
-                return cosplayer.totalVoteCount;
-            }
-        }
-        return 0;
-    }
-
     $(".cosplayer-link").each(function(){
         cosplayerList.push($(this).next().find("img").attr("src").split('/').pop().split('_',1));
     });
