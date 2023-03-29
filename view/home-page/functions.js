@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(window).on('load', function() {
 
     function searchVote(cosplayerID){
         for (cosplayer of cosplayerState) {
@@ -8,6 +8,5 @@ $(document).ready(function(){
             }
         }
         return 0;
-    }
-
+    };
 });

@@ -1,4 +1,4 @@
-$(document).ready(function () {
+$(window).on('load', function() {
 
     //Insert cosplayer id into profile count
     $(".profile-vote-count-number")
