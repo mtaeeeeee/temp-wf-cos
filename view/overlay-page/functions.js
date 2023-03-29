@@ -34,10 +34,12 @@ function resetPaymentOverlay() {
     $(".payment-vote-count").empty().append("0");
     $(".payment-token-count").empty().append("0");
     $(".payment-token-currency").empty().append("XXX");
+    $(".close-payment-overlay-btn").off();
 
     //Reset selector
     $("select.payment-currency-selector").val([]);
     $("select.payment-currency-selector option[value='']").prop("selected", true);
+    $("select.payment-currency-selector").off();
 }
 
 function closePaymentOverlay() {
@@ -95,6 +97,9 @@ function resetPhotoOverlay() {
     //Reset counter
     $(".photo-vote-count").attr("class", "photo-vote-count");
     $(".photo-vote-count").empty().append("0");
+    //Rest buttons
+    $(".vote-up").off();
+    $(".vote-down").off();
 }
 
 function closePhotoOverlay() {
