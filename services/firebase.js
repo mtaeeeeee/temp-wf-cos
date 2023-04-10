@@ -2,7 +2,8 @@ import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.19.1/firebas
 import {
   getAuth,
   GoogleAuthProvider,
-  signInWithPopup
+  signInWithPopup,
+  signOut
 } from 'https://www.gstatic.com/firebasejs/9.19.1/firebase-auth.js'
 
 const firebaseConfig = {
@@ -14,13 +15,20 @@ const firebaseConfig = {
   appId: '1:664875905615:web:c39d81fb6d8f8f2d09303a',
   measurementId: 'G-FETS6MKXT6'
 }
-const app = initializeApp(firebaseConfig)
+initializeApp(firebaseConfig)
 const auth = getAuth()
 
-let user = null
+let user = auth.currentUser()
+
+if (user) {
+  $('.btn-login').html('Logout')
+} else {
+  $('.btn-login').html('Login')
+}
 
 auth.onAuthStateChanged(user => {
   user = user
+  console.log('ahihi user', user)
   if (user) {
     $('.btn-login').html('Logout')
   } else {
@@ -40,6 +48,6 @@ $('.btn-login').on('click', async function () {
       // Handle errors here
     }
   } else {
-    console.log('ahihi users', user)
+    signOut(auth)
   }
 })
