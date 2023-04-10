@@ -1,4 +1,4 @@
-import { auth, user } from '../services/firebase'
+import { auth, user } from 'https://raw.githack.com/mtaeeeeee/temp-wf-cos/main/services/firebase.js'
 
 console.log('ahihihi auth and user', auth, user)
 
