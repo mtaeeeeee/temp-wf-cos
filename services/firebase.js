@@ -18,7 +18,7 @@ const firebaseConfig = {
 initializeApp(firebaseConfig)
 const auth = getAuth()
 
-let user = auth.currentUser()
+let user = auth.currentUser
 
 if (user) {
   $('.btn-login').html('Logout')
@@ -27,8 +27,6 @@ if (user) {
 }
 
 auth.onAuthStateChanged(user => {
-  user = user
-  console.log('ahihi user', user)
   if (user) {
     $('.btn-login').html('Logout')
   } else {
@@ -37,6 +35,7 @@ auth.onAuthStateChanged(user => {
 })
 
 $('.btn-login').on('click', async function () {
+  let user = auth.currentUser
   if (!user) {
     const provider = new GoogleAuthProvider()
     try {
