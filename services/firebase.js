@@ -50,3 +50,5 @@ $('.btn-login').on('click', async function () {
     signOut(auth)
   }
 })
+
+export { auth, user }
