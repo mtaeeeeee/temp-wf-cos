@@ -39,7 +39,7 @@ $('.btn-login').on('click', async function () {
   if (!user) {
     const provider = new GoogleAuthProvider()
     try {
-      const result = await signInWithPopup(auth, provider)
+      await signInWithPopup(auth, provider)
       $('.btn-login').html('Logout')
       // User signed in successfully
     } catch (error) {
@@ -51,4 +51,4 @@ $('.btn-login').on('click', async function () {
   }
 })
 
-export { auth, user }
+export { auth }

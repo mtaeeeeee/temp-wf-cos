@@ -1,11 +1,10 @@
-import { auth, user } from 'https://raw.githack.com/mtaeeeeee/temp-wf-cos/main/services/firebase.js'
-
-console.log('ahihihi auth and user', auth, user)
+import { auth } from 'https://raw.githack.com/mtaeeeeee/temp-wf-cos/main/services/firebase.js'
 
 const currentUser = auth.currentUser
+
 if (currentUser) {
   console.log('ahihi currentUser', currentUser)
-  $('#email').val('Tri Hoang')
+  $('#email-2').val(currentUser.email)
 }
 const form = document.getElementById('cosplayer-profile-form')
 
