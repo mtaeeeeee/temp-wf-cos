@@ -1,29 +1,24 @@
+import { apiUrl } from 'https://raw.githack.com/mtaeeeeee/temp-wf-cos/main/utils/constant.js'
+
 const collectionId = '63ce4425b086d45e60078410'
-const apiHost = 'http://localhost:5001/cosplayer-voting/us-central1/webflow/api'
 
 export const createNewCosplayer = data => {
-  const apiUrl = `${apiHost}/collections/${collectionId}/items`
-
-  fetch(apiUrl, {
+  $.ajax({
+    url: `${apiUrl}/collections/${collectionId}/items`,
     method: 'POST',
-    body: JSON.stringify({
+    contentType: 'application/json',
+    data: JSON.stringify({
       fields: {
         _archived: false,
         _draft: false,
         ...data
       }
-    })
+    }),
+    success: function (data) {
+      console.log(data)
+    },
+    error: function (jqXHR, textStatus, errorThrown) {
+      console.error(errorThrown)
+    }
   })
-    .then(response => {
-      if (response.ok) {
-        console.log('ahihi created', response)
-        // Handle success
-      } else {
-        console.log('ahihi error created')
-        // Handle error
-      }
-    })
-    .catch(error => {
-      // Handle error
-    })
 }
