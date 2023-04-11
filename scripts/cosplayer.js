@@ -1,21 +1,29 @@
-import { auth } from 'https://raw.githack.com/mtaeeeeee/temp-wf-cos/main/services/firebase.js'
+const collectionId = '63ce4425b086d45e60078410'
+const apiHost = 'http://localhost:5001/cosplayer-voting/us-central1/webflow/api'
 
-const currentUser = auth.currentUser
+export const createNewCosplayer = data => {
+  const apiUrl = `${apiHost}/collections/${collectionId}/items`
 
-if (currentUser) {
-  console.log('ahihi currentUser', currentUser)
-  $('#email-2').val(currentUser.email)
+  fetch(apiUrl, {
+    method: 'POST',
+    body: JSON.stringify({
+      fields: {
+        _archived: false,
+        _draft: false,
+        ...data
+      }
+    })
+  })
+    .then(response => {
+      if (response.ok) {
+        console.log('ahihi created', response)
+        // Handle success
+      } else {
+        console.log('ahihi error created')
+        // Handle error
+      }
+    })
+    .catch(error => {
+      // Handle error
+    })
 }
-const form = document.getElementById('cosplayer-profile-form')
-
-form.addEventListener('submit', event => {
-  event.preventDefault()
-  const formData = new FormData(form)
-
-  const nickname = formData.get('nickname')
-  const description = formData.get('description')
-  const email = formData.get('email')
-  // Add your code to handle the form submission here
-
-  console.log('ahihii', nickname, description, email)
-})
