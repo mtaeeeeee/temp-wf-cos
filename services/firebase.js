@@ -60,4 +60,4 @@ $('.btn-login').on('click', async function () {
   }
 })
 
-export { auth }
+export { auth, firestore }
