@@ -5,6 +5,7 @@ import {
   signInWithPopup,
   signOut
 } from 'https://www.gstatic.com/firebasejs/9.19.1/firebase-auth.js'
+import { getFirestore, doc, updateDoc, getDoc } from 'https://www.gstatic.com/firebasejs/9.19.1/firebase-firestore.js'
 
 const firebaseConfig = {
   apiKey: 'AIzaSyAZe_957xX28aetQWWxvMoIKISWNE_RLdo',
@@ -17,6 +18,7 @@ const firebaseConfig = {
 }
 initializeApp(firebaseConfig)
 const auth = getAuth()
+const firestore = getFirestore(app)
 
 let user = auth.currentUser
 
@@ -40,6 +42,13 @@ $('.btn-login').on('click', async function () {
     const provider = new GoogleAuthProvider()
     try {
       await signInWithPopup(auth, provider)
+      const userRef = doc(firestore, 'cosplayers', user.uid)
+      const detail = await getDoc(userRef)
+      if (!detail?.data()?.uid) {
+        await updateDoc(userRef, {
+          uid: user.uid
+        })
+      }
       $('.btn-login').html('Logout')
       // User signed in successfully
     } catch (error) {
