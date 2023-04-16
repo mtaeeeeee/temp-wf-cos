@@ -1,6 +1,22 @@
 import { apiUrl } from 'https://raw.githack.com/mtaeeeeee/temp-wf-cos/main/utils/constant.js'
+import { auth, firestore } from 'https://raw.githack.com/mtaeeeeee/temp-wf-cos/main/services/firebase.js'
+import { doc, updateDoc } from 'https://www.gstatic.com/firebasejs/9.19.1/firebase-firestore.js'
 
 const collectionId = '63ce4425b086d45e60078410'
+
+const updateName = async name => {
+  const user = auth.currentUser
+  try {
+    if (user && user.uid) {
+      const userRef = doc(firestore, 'cosplayers', user.uid)
+      await updateDoc(userRef, {
+        name
+      })
+    }
+  } catch (err) {
+    console.log('ahihi error update name firebase', err)
+  }
+}
 
 export const createNewCosplayer = data => {
   $.ajax({
@@ -16,6 +32,9 @@ export const createNewCosplayer = data => {
     }),
     success: function (data) {
       console.log(data)
+      if (data.name) {
+        updateName(data.name)
+      }
     },
     error: function (jqXHR, textStatus, errorThrown) {
       console.error(errorThrown)
@@ -35,6 +54,9 @@ export const updateCosplayerDetail = (itemId, data) => {
     }),
     success: function (data) {
       console.log(data)
+      if (data.name) {
+        updateName(data.name)
+      }
     },
     error: function (jqXHR, textStatus, errorThrown) {
       console.error(errorThrown)
