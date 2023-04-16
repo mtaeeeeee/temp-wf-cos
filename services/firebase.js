@@ -42,12 +42,12 @@ $('.btn-login').on('click', async function () {
     const provider = new GoogleAuthProvider()
     try {
       const res = await signInWithPopup(auth, provider)
-      console.log('ahihi res', res)
-      const userRef = doc(firestore, 'cosplayers', user.uid)
+      const userRef = doc(firestore, 'cosplayers', res.user?.uid)
       const detail = await getDoc(userRef)
+      console.log('ahihi res', res.user, detail?.data())
       if (!detail?.data()?.uid) {
         await updateDoc(userRef, {
-          uid: user.uid
+          uid: res.user?.uid
         })
       }
       $('.btn-login').html('Logout')
