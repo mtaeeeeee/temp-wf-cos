@@ -5,7 +5,7 @@ import {
   signInWithPopup,
   signOut
 } from 'https://www.gstatic.com/firebasejs/9.19.1/firebase-auth.js'
-import { getFirestore, doc, addDoc, getDoc } from 'https://www.gstatic.com/firebasejs/9.19.1/firebase-firestore.js'
+import { getFirestore, doc, setDoc, getDoc } from 'https://www.gstatic.com/firebasejs/9.19.1/firebase-firestore.js'
 
 const firebaseConfig = {
   apiKey: 'AIzaSyAZe_957xX28aetQWWxvMoIKISWNE_RLdo',
@@ -46,7 +46,7 @@ $('.btn-login').on('click', async function () {
       const detail = await getDoc(userRef)
       console.log('ahihi res', res.user, detail?.data())
       if (!detail?.data()?.uid) {
-        await addDoc(userRef, {
+        await setDoc(userRef, {
           uid: res.user?.uid
         })
       }
