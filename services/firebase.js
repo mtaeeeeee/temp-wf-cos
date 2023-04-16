@@ -41,7 +41,8 @@ $('.btn-login').on('click', async function () {
   if (!user) {
     const provider = new GoogleAuthProvider()
     try {
-      await signInWithPopup(auth, provider)
+      const res = await signInWithPopup(auth, provider)
+      console.log('ahihi res', res)
       const userRef = doc(firestore, 'cosplayers', user.uid)
       const detail = await getDoc(userRef)
       if (!detail?.data()?.uid) {
