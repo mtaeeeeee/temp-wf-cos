@@ -44,7 +44,6 @@ $('.btn-login').on('click', async function () {
       const res = await signInWithPopup(auth, provider)
       const userRef = doc(firestore, 'cosplayers', res.user?.uid)
       const detail = await getDoc(userRef)
-      console.log('ahihi res', res.user, detail?.data())
       if (!detail?.data()?.uid) {
         await setDoc(userRef, {
           uid: res.user?.uid
