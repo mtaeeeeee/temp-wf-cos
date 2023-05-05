@@ -136,8 +136,8 @@ function pictureOriginalSize(pictureUrl) {
 }
 
 function getPictureVoteCount(refCosplayerID, refPhotoID) {
-  if (refPhotoID in cosplayerPhotoState[refCosplayerID]?.photos) {
-    return cosplayerPhotoState[refCosplayerID].photos[refPhotoID].voteCount
-  }
+  //   if (refPhotoID in cosplayerPhotoState[refCosplayerID]?.photos) {
+  //     return cosplayerPhotoState[refCosplayerID].photos[refPhotoID].voteCount
+  //   }
   return 0
 }
